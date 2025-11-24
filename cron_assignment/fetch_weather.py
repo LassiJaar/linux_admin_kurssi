@@ -2,7 +2,7 @@
 import requests
 import mysql.connector
 from datetime import datetime
-API_KEY = 'bd16aeeecb576eafefd1d9d6143b3b53'
+API_KEY = 'OMA-API-KEY'
 CITY = 'Helsinki'
 URL = f'https://api.openweathermap.org/data/2.5/weather?q={CITY}&appid={API_KEY>
 conn = mysql.connector.connect(host='localhost', user='exampleuser', password='>
