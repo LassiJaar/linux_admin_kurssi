@@ -1,3 +1,4 @@
+
 from flask import Flask
 import mysql.connector
 app = Flask(__name__)
@@ -7,7 +8,7 @@ def home():
  conn = mysql.connector.connect(
  host="localhost",
  user="exampleuser",
- password="MUISTA LAITTAA SALASANA TÄHÄN",
+ password="SALASANA",
  database="exampledb"
  )
  cursor = conn.cursor()
@@ -18,15 +19,21 @@ def home():
  conn.close()
  return f"""
 <head>
-<h1>TERVEHDYS SINULLE!</h1>
+<h1>LINUX KURSSIN NETTISIVUT!</h1>
 <p1>MYSQL-kello on nyt {result[0]}</p1>
 </head>
+
 <body>
+<br>
 <button onClick="history.go(0);">Tässä on nappula joka päivittää sivun!</button>
-<iframe width="420" height="345" src="https://www.youtube.com/embed/muRo4F7n4RI" title="Ikea reissu tiedossa (Reupload)" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></ifra>
+<br>
+<a href="http://86.50.23.172/data-analysis">TÄÄLTÄ LÖYTYY DATA-ANALYSIS</a>
+<br>
+<a href="http://86.50.23.172/chat">TÄÄLTÄ LÖYTYY CHAT-PALVELU!</a>
+
 
 </body>
 """
-
 if __name__ == '__main__':
  app.run(host='0.0.0.0', port=5000)
+
