@@ -9,7 +9,7 @@ Täältä löytyy Nginx-etusivu.
 ## Cron_assignment
 Täältä löytyy ohjelmat, jotka hoitavat säädatan hakemisen.
 
-## Myapp
+## Streamlit (Linux-koneella myapp)
 Täältä löytyy Streamlit-palvelun sivut.
 
 ## Mqtt-chat
