@@ -2,6 +2,7 @@
 import requests
 import mysql.connector
 from datetime import datetime
+import pytz
 API_KEY = 'OMA-API-KEY'
 CITY = 'Helsinki'
 URL = f'https://api.openweathermap.org/data/2.5/weather?q={CITY}&appid={API_KEY}&units=metric'
@@ -12,7 +13,7 @@ response = requests.get(URL)
 data = response.json()
 temp = data['main']['temp']
 desc = data['weather'][0]['description']
-timestamp = datetime.now()
+timestamp = datetime.now(pytz.timezone('Europe/Helsinki'))
 cursor.execute('INSERT INTO weather_data (city, temperature, description, timestamp) VALUES (%s, %s, %s, %s)', (CITY, temp, desc, timestamp))
 conn.commit()
 cursor.close()
