@@ -1,11 +1,16 @@
 from flask import Flask, jsonify
 import os
 import mysql.connector
+import random
+
 app = Flask(__name__)
 DB_HOST =os.getenv('DB_HOST', 'mysql')
 DB_USER =os.getenv('DB_USER', 'appuser')
 DB_PASSWORD =os.getenv('DB_PASSWORD')
 DB_NAME =os.getenv('DB_NAME', 'appdb')
+
+etunimiList = ['Pasi','Simo','Petri','Hannu','Eetu','Maija','Maisa','Kaisa','Anja','Pauli','Pauliina','Essi','Sisko','Veli','Matti','Samppa','Kristiina']
+sukunimiList = ['Karvajalka','Vesilintu','Kurki','Joutsen','Rästäs','Haukkala','Kotkala','Kaijala','Varis','Tulkku','Korpi','Kanala','Syrjä','Ontamo','Myyräs','Suomela','Hanhi']
 
 @app.get('/api/health')
 def health():
@@ -21,7 +26,7 @@ def get_users():
         database=DB_NAME,
         )
         cursor = conn.cursor(dictionary=True)
-        cursor.execute("SELECT * FROM users ORDER BY id DESC")
+        cursor.execute("SELECT * FROM users ORDER BY id DESC LIMIT 25")
         users = cursor.fetchall()
         cursor.close()
         conn.close()
@@ -49,14 +54,14 @@ def init_db():
         """)
         cursor.execute("""
             INSERT INTO users (name, email) VALUES
-            ('John Doe', 'john@example.com'),
-            ('Jane Smith', 'jane@example.com')
-        """)
+            (%s %s %s, 'Wrong.Name@example.com')
+        """, (random.choice(etunimiList), ' ', random.choice(sukunimiList)))
         conn.commit()
         cursor.close()
         conn.close()
-        return jsonify({"message": "Database initialized"})
+        return jsonify({"message": "Database initialisoitu ja käyttäjä lisätty!"})
     except Exception as e:
         return jsonify({"error": str(e)}), 500
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=5000)
+
