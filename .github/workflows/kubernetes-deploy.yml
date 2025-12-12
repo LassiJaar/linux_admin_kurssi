@@ -8,8 +8,8 @@ on:
 
 env:
   REGISTRY: ghcr.io
-  IMAGE_NAME_FRONTEND: ${{ github.repository }}/kubelemp/frontend
-  IMAGE_NAME_BACKEND: ${{ github.repository }}/kubelemp/backend
+  IMAGE_NAME_FRONTEND: ${{ github.repository }}/frontend
+  IMAGE_NAME_BACKEND: ${{ github.repository }}/backend
 
 jobs:
   # Job 1: Build ja testaa frontend
